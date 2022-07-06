@@ -290,66 +290,66 @@ fn parse_hex(s: &str) -> Result<Color, Box<dyn error::Error>> {
     Ok(Color::from_rgba_u8(r, g, b, a))
 }
 
-fn parse_percent_or_float(s: &str) -> Option<f64> {
+fn parse_percent_or_float(s: &str) -> Option<f32> {
     if let Some(s) = s.strip_suffix('%') {
-        if let Ok(t) = s.parse::<f64>() {
+        if let Ok(t) = s.parse::<f32>() {
             return Some(t / 100.0);
         }
         return None;
     }
 
-    if let Ok(t) = s.parse::<f64>() {
+    if let Ok(t) = s.parse::<f32>() {
         return Some(t);
     }
 
     None
 }
 
-fn parse_percent_or_255(s: &str) -> Option<f64> {
+fn parse_percent_or_255(s: &str) -> Option<f32> {
     if let Some(s) = s.strip_suffix('%') {
-        if let Ok(t) = s.parse::<f64>() {
+        if let Ok(t) = s.parse::<f32>() {
             return Some(t / 100.0);
         }
         return None;
     }
 
-    if let Ok(t) = s.parse::<f64>() {
+    if let Ok(t) = s.parse::<f32>() {
         return Some(t / 255.0);
     }
 
     None
 }
 
-fn parse_angle(s: &str) -> Option<f64> {
+fn parse_angle(s: &str) -> Option<f32> {
     if let Some(s) = s.strip_suffix("deg") {
-        if let Ok(t) = s.parse::<f64>() {
+        if let Ok(t) = s.parse::<f32>() {
             return Some(t);
         }
         return None;
     }
 
     if let Some(s) = s.strip_suffix("grad") {
-        if let Ok(t) = s.parse::<f64>() {
+        if let Ok(t) = s.parse::<f32>() {
             return Some(t * 360.0 / 400.0);
         }
         return None;
     }
 
     if let Some(s) = s.strip_suffix("rad") {
-        if let Ok(t) = s.parse::<f64>() {
+        if let Ok(t) = s.parse::<f32>() {
             return Some(t.to_degrees());
         }
         return None;
     }
 
     if let Some(s) = s.strip_suffix("turn") {
-        if let Ok(t) = s.parse::<f64>() {
+        if let Ok(t) = s.parse::<f32>() {
             return Some(t * 360.0);
         }
         return None;
     }
 
-    if let Ok(t) = s.parse::<f64>() {
+    if let Ok(t) = s.parse::<f32>() {
         return Some(t);
     }
 
